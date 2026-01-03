@@ -1,0 +1,62 @@
+project_name: "Loan Default Prediction"
+version: "1.0.0"
+
+data:
+  n_samples: 10000
+  random_seed: 42
+  default_rate: 0.15
+  test_size: 0.2
+  validation_size: 0.2
+
+model:
+  random_forest:
+    n_estimators: 100
+    max_depth: null
+    min_samples_split: 2
+    min_samples_leaf: 1
+    random_state: 42
+  
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  
+  logistic_regression:
+    random_state: 42
+    max_iter: 1000
+    C: 1.0
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - auc_roc
+    - auc_pr
+    - gini
+    - ks_statistic
+    - brier_score
+    - calibration_error
+  
+  plots:
+    roc_curve: true
+    precision_recall_curve: true
+    calibration_curve: true
+    confusion_matrix: true
+    feature_importance: true
+  
+  save_plots: true
+  plot_format: "png"
+  plot_dpi: 300
